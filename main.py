@@ -31,5 +31,5 @@ with open("input.txt", "r", encoding="utf-8") as input_file, \
                 translation = translate_text(sentence, source="ru", target="de", format="text")
                 # time.sleep(1)
                 print(f"{sentence}\n{translation['translatedText']}\n\n")
-                output_file.write(f"{sentence}\t{translation['translatedText']}\n\n")
+                output_file.write(f"{sentence}\n{translation['translatedText']}\n\n")
                 output_file.flush()
