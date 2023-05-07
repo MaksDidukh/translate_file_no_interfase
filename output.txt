@@ -1,0 +1,12 @@
+ГЛАВА ПЕРВАЯ,
+CHAPTER FIRST,
+
+ГЛАВА ВТОРАЯ,
+Chapter two,
+
+ГЛАВА ТРЕТЬЯ,
+Chapter three,
+
+ГЛАВА ЧЕТВЕРТАЯ,
+Chapter Four,
+

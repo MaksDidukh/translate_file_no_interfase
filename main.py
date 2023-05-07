@@ -1,24 +1,21 @@
-import requests
-import json
 import time
+from googletrans import Translator
 
+translator = Translator()
+print("You need rename file!\n Need name:  input.txt")
+dest = input("What language do you want to translate into?: ru/de/en/fr/es/pl:")
 
-
-def translate_text(q, source="ru", target="de", format="text"):
-    url = "http://94.231.205.187:5000/translate"
-    headers = {
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "q": q,
-        "source": source,
-        "target": target,
-        "format": format
-    }
-
-    response = requests.post(url, data=json.dumps(payload), headers=headers)
-
-    return response.json()
+def translate_text(sentence, dest=dest):
+    while True:
+        try:
+            translation = translator.translate(str(sentence), dest=dest)
+            return translation.text
+        except Exception as e:
+            # Handle the error
+            print(sentence)
+            print(" ")
+            print(f"Error occurred: {e}")
+            time.sleep(3)  # Ждем 1 секунду перед повторной попыткой
 
 with open("input.txt", "r", encoding="utf-8") as input_file, \
      open("output.txt", "w", encoding="utf-8") as output_file:
@@ -28,8 +25,7 @@ with open("input.txt", "r", encoding="utf-8") as input_file, \
         for sentence in sentences:
             sentence = sentence.strip()
             if sentence:
-                translation = translate_text(sentence, source="ru", target="de", format="text")
-                # time.sleep(1)
-                print(f"{sentence}\n{translation['translatedText']}\n\n")
-                output_file.write(f"{sentence}\n{translation['translatedText']}\n\n")
+                translation = translate_text(sentence)
+                print(f"{sentence}\n{translation}\n\n")
+                output_file.write(f"{sentence}\n{translation}\n\n")
                 output_file.flush()
